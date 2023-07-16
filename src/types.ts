@@ -531,34 +531,38 @@ console.log(sym1 == sym2);
 // }
 
 // =======================
-class Millat{
+class Millat {
   constructor(
-    public name:string,
-    protected tili:string,
-    private _dini:string,
-    private _age:number
+    public name: string,
+    protected tili: string,
+    private _dini: string,
+    private _age: number
   ) {}
-  set age(newAge:number){
-    this._age=newAge
+  set age(newAge: number) {
+    this._age = newAge;
   }
-  get age(){
-    return this._age
+  get age() {
+    return this._age;
   }
-  set dini(religious:string){
-    this._dini = religious
+  set dini(religious: string) {
+    this._dini = religious;
   }
-  get dini(){
-    return this._dini
+  get dini() {
+    return this._dini;
   }
-  about(){
-    return `Millati: ${this.name}, tili: ${this.tili}`
+  about() {
+    return `Millati: ${this.name}, tili: ${this.tili}`;
   }
 }
 class Uzbek extends Millat {
-  public history: string;
-
-  constructor(name: string, age: number, tili: string, dini: string, history: string) {
-    super(name, age, tili, dini);
+  constructor(
+    name: string,
+    tili: string,
+    dini: string,
+    age: number,
+    public history: string
+  ) {
+    super(name, tili, dini, age);
     this.history = history;
   }
 
@@ -571,12 +575,48 @@ class Uzbek extends Millat {
   }
 }
 
-
-const uzbek = new Uzbek("Uzbek",23,"uzbek","Islom","Buyuk")
-uzbek.setLang("Uzbek tili")
-uzbek.dini = "Islom dini"
+const uzbek = new Uzbek("Uzbek", "uzbek", "Islom", 23, "Buyuk");
+uzbek.setLang("Uzbek tili");
+uzbek.dini = "Islom dini";
 console.log(uzbek.dini);
-uzbek.age = 44
-
+uzbek.age = 44;
 
 console.log(uzbek.about());
+// ===== Abstract class ============='
+abstract class Shaxmatdona {
+  abstract draw(): void;
+  abstract move(): string;
+  info(s: string) {
+    console.log(s);
+  }
+}
+
+// const dona = new Shaxmatdona() //xato
+class Fil extends Shaxmatdona {
+  draw(): void {
+    console.log("Chiz");
+  }
+  move(): string {
+    return "Diogonal yur";
+  }
+}
+
+const fil = new Fil();
+fil.info("filcha");
+fil.move();
+
+// ============implements============
+interface LoggerService {
+  log: (mess: string) => void;
+}
+
+class Logger implements LoggerService {
+  log(mes: string) {
+    console.log(mes);
+  }
+}
+// =======static=========
+class StaticClass {
+  static num = 1;
+}
+console.log(StaticClass.num); //instance yaratmasdan murojaat qilish mumkin
